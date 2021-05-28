@@ -1,0 +1,284 @@
+body, ul, li, p {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 1.2rem;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    margin-bottom: 4rem;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.header {
+    height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem;
+    margin: 0 auto;
+    max-width: 800px;
+    background: #1d1e20;
+}
+
+.header > a {
+    padding: 0.5rem;
+    transition: 0.2s;
+}
+
+.header > a:hover {
+    filter: brightness(0.8);
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.menu a {
+    display: block;
+    padding: 0.5rem;
+    transition: 0.2s;
+}
+
+.menu a:hover {
+    filter: brightness(0.8);
+}
+
+.header nav button {
+    display: none;
+
+    padding: 0.5rem;
+    border: none;
+    color: whitesmoke;
+    background: #1d1e20;
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.header nav button:hover {
+    cursor: pointer;
+    filter: brightness(0.8)
+}
+
+/* MENU RESPONSIVO */
+@media (max-width: 600px) {
+    .header nav button {
+        display: flex;
+    }
+
+    .span {
+        display: block;
+        border-top: 2px solid whitesmoke;
+        width: 20px;
+    }
+
+    .span::before, .span::after {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: currentColor;
+        margin-top: 5px;
+        transition: 0.5s;
+        position: relative;
+    }
+
+    .active .span {
+        border-top: transparent;
+    }
+
+    .active .span::before {
+        transform: rotate(135deg);
+    }
+
+    .active .span::after {
+        transform: rotate(-135deg);
+        top: -7px;
+    }
+
+    .header nav button {
+        display: block;
+    }
+
+    .menu {
+        height: 0;
+        /* visibility: hidden;
+        overflow-y: hidden; */
+        transition: 0.4s;
+
+        display: block;
+        background: #1d1e20;
+
+        position: absolute;
+        width: 100%;
+        top: 82px;
+        right: 0;
+    }
+
+    .menu li {
+        padding: 1rem 0;
+        margin: 0 1rem;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .active .menu {
+        height: calc(100vh - 82px);
+        /* visibility: visible; */
+        overflow-y: auto;
+    }
+}
+
+/* ESTILOS GLOBAIS */
+h1 {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+/* FLEXBOX 1 */
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+.flex div {
+    flex: 1 1 200px;
+}
+
+/* CSS GRID 1 */
+.grid1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+/* Estiliza a partir do quarto filho */
+.grid1 > div:nth-child(n + 4) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.anuncio {
+    /* grid-column: 1;
+    grid-row: 2/5; */
+    grid-area: 2 / 1 / 5 / 1; /* InícioLin / InícioCol / FimLin / FimCol */
+}
+
+@media (max-width: 600px) {
+    .grid1 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid1 > div:nth-child(n + 4) {
+        display: block;
+    }
+
+    .anuncio {
+        grid-area: auto;
+        order: -1;
+    }
+}
+
+
+@media (max-width: 430px) {
+    .grid1 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* CSS GRID 2 */
+.grid2 {
+    display: grid;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 1rem;
+    grid-template-columns: 1fr 200px;
+}
+
+.sidebar > div + div {
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+    .grid2 {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem
+    }
+
+    .sidebar > div {
+        flex: 1 1 200px;
+    }
+
+    .sidebar > div + div {
+        margin: 0;
+    }
+}
+
+@media (max-width: 430px) {
+    .sidebar > div {
+        flex: 1 1 100px;
+    }
+}
+
+/* CSS GRID 3 */
+.grid3 {
+    display: grid;
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Poderia ser uma classe específica pro primero item */
+.grid3 > div:nth-child(1) {
+    grid-row: 1/3;
+}
+
+/* Poderia ser uma classe específica para itens */
+.grid3 > div {
+    display: grid;
+}
+
+.grid3 > div img {
+    grid-column: 1;
+    grid-row: 1/3;
+
+    align-self: flex-end;
+}
+
+.grid3 > div p {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1rem;
+    color: white;
+    grid-column: 1;
+    grid-row: 2;
+
+    align-self: flex-end;
+}
